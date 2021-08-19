@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react'
 
+import AudioControls from './AudioControls/AudioControls'
 import './AudioPlayer.css'
 
 const AudioPlayer = () => {
   const tracks = [
     {
-      title: 'Havana',
-      artist: 'Camila Cabello ',
+      title: 'Senorita',
+      artist: 'Shawn Mendes, Camila Cabello',
       audioSrc: '',
-      image:
-        'https://upload.wikimedia.org/wikipedia/en/9/98/Havana_%28featuring_Young_Thug%29_%28Official_Single_Cover%29_by_Camila_Cabello.png',
+      image: 'https://i.ytimg.com/vi/OmHa0bnZs9o/hqdefault.jpg',
       color: 'yellow',
     },
   ]
@@ -43,6 +43,9 @@ const AudioPlayer = () => {
     console.log('move to next track')
   }
 
+  const setIsPlaying = () => {
+    console.log('is playing')
+  }
   return (
     <>
       <div className='audio-player'>
@@ -54,6 +57,12 @@ const AudioPlayer = () => {
           />
           <h2 className='title'>{title}</h2>
           <h3 className='artist'>{artist}</h3>
+          <AudioControls
+            isPlaying={isPlaying}
+            onPrevClick={toPrevTrack}
+            onNextClick={toNextTrack}
+            onPlayPauseClick={setIsPlaying}
+          />
         </div>
       </div>
     </>
