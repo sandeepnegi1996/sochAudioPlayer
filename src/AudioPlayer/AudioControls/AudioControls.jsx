@@ -1,9 +1,11 @@
 import React from 'react'
 
-import { PlayFill } from 'react-bootstrap-icons'
+import { HeartFill, PlayFill } from 'react-bootstrap-icons'
 import { PauseFill } from 'react-bootstrap-icons'
 import { ArrowLeftCircleFill } from 'react-bootstrap-icons'
 import { ArrowRightCircleFill } from 'react-bootstrap-icons'
+import { VolumeDown } from 'react-bootstrap-icons'
+
 import './AudioControl.css'
 
 const AudioControls = ({
