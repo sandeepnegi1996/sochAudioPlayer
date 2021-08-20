@@ -20,7 +20,7 @@ const AudioControls = ({
         aria-label='Previous'
         onClick={onPrevClick}
       >
-        <ArrowLeftCircleFill size={40} color={'#90EE90'} />
+        <ArrowLeftCircleFill size={40} />
       </button>
 
       {isPlaying ? (
@@ -32,7 +32,7 @@ const AudioControls = ({
             onPlayPauseClick(false)
           }}
         >
-          <PauseFill size={40} color={'#90EE90'} />
+          <PauseFill size={40} />
         </button>
       ) : (
         <button
@@ -41,7 +41,7 @@ const AudioControls = ({
           onClick={() => onPlayPauseClick(true)}
           aria-label='Play'
         >
-          <PlayFill size={40} color={'#90EE90'} />
+          <PlayFill size={40} />
         </button>
       )}
 
@@ -51,7 +51,7 @@ const AudioControls = ({
         aria-label='Next'
         onClick={onNextClick}
       >
-        <ArrowRightCircleFill size={40} color={'#90EE90'} />
+        <ArrowRightCircleFill size={40} />
       </button>
     </div>
   )
