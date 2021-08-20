@@ -10,8 +10,20 @@
 html {
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
-  background: var(--active-color);
+  /* background: var(--active-color); */
   transition: background 0.4s ease;
+
+  background: #67b26f; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #4ca2cd,
+    #67b26f
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #4ca2cd,
+    #67b26f
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 button {
