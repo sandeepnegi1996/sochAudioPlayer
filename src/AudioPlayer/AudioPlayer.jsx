@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { VolumeDownFill } from 'react-bootstrap-icons'
 
 import AudioControls from './AudioControls/AudioControls'
 import './AudioPlayer.css'
@@ -11,7 +12,6 @@ const AudioPlayer = () => {
       audioSrc:
         'https://www.mboxdrive.com/Shawn%20Mendes,%20Camila%20Cabello%20-%20Se%C3%B1orita.mp3',
       image: 'https://i.ytimg.com/vi/OmHa0bnZs9o/hqdefault.jpg',
-      color: 'yellow',
     },
 
     {
@@ -20,7 +20,6 @@ const AudioPlayer = () => {
       audioSrc:
         'https://www.mboxdrive.com/Taylor%20Swift%20-%20Blank%20Space.mp3',
       image: 'https://wallpapercave.com/wp/wp7261524.jpg',
-      color: 'yellow',
     },
     {
       title: 'Never Be Alone',
@@ -29,16 +28,13 @@ const AudioPlayer = () => {
         'https://www.mboxdrive.com/Shawn%20Mendes%20-%20Never%20Be%20Alone%20(Tradu%C3%A7%C3%A3o).mp3',
       image:
         'https://c-cl.cdn.smule.com/rs-s26/arr/fd/5f/4b9bfdc3-49b1-49bf-9a18-ce45da448876_1024.jpg',
-      color: 'yellow',
     },
     {
-      title: 'In My Blood',
-      artist: 'Shawn Mendes',
-      audioSrc:
-        'https://m.media-amazon.com/images/M/MV5BYzZlOTVlODctZmFiNC00NTg4LTkwNTAtYmNhNDBiMTViNzRjXkEyXkFqcGdeQXVyNDQ5MDYzMTk@._V1_.jpg',
+      title: 'No Roots',
+      artist: 'Alice Merton',
+      audioSrc: 'https://www.mboxdrive.com/noRoots_Alice_Merton.mp3',
       image:
-        'https://c-cl.cdn.smule.com/rs-s26/arr/fd/5f/4b9bfdc3-49b1-49bf-9a18-ce45da448876_1024.jpg',
-      color: 'yellow',
+        'https://girlsareawesome.com/wp-content/uploads/2019/02/Copy-of-AliceMerton_2018-06_PaperPlaneRecordsInt.jpg',
     },
     {
       title: 'Trickster',
@@ -46,7 +42,6 @@ const AudioPlayer = () => {
       audioSrc: 'https://www.mboxdrive.com/trickster2.mp3',
       image:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJBLXkN0vGTrclWJeoNiVr-VR_Qj4bOEgwFQ&usqp=CAU',
-      color: 'yellow',
     },
   ]
 
@@ -56,10 +51,13 @@ const AudioPlayer = () => {
   const [trackProgress, settrackProgress] = useState(0)
   const [isPlaying, setisPlaying] = useState(false)
 
+  //this will track the sound bar progress
+  const [trackSoundProgress, setTrackSoundProgress] = useState(0)
+
   //ref
 
   //Destructure for tracks
-  const { title, artist, color, image, audioSrc } = tracks[trackIndex]
+  const { title, artist, image, audioSrc } = tracks[trackIndex]
 
   // This si teh API Audio api that we will be using
   // it has controls for play pause
@@ -163,6 +161,15 @@ const AudioPlayer = () => {
 
     startTimer()
   }
+
+  const onSoundChange = (value) => {
+    clearInterval(intervalRef.current)
+    let newValue = value / 100
+    console.log(newValue)
+    audioRef.current.volume = newValue
+    setTrackSoundProgress(value)
+  }
+
   return (
     <>
       <div className='audio-player'>
@@ -181,17 +188,36 @@ const AudioPlayer = () => {
             onPlayPauseClick={setIsPlaying}
           />
 
-          <input
-            type='range'
-            value={trackProgress}
-            step='1'
-            min='0'
-            max={duration ? duration : `${duration}`}
-            className='progress'
-            onChange={(e) => onScrub(e.target.value)}
-            onMouseUp={onScrubEnd}
-            onKeyUp={onScrubEnd}
-          />
+          <div className='progressBarParent'>
+            <div className='progressBarInput'>
+              <input
+                type='range'
+                value={trackProgress}
+                step='1'
+                min='0'
+                max={duration ? duration : `${duration}`}
+                className='progress'
+                onChange={(e) => onScrub(e.target.value)}
+                onMouseUp={onScrubEnd}
+                onKeyUp={onScrubEnd}
+              />
+            </div>
+
+            <div className='sound-control'>
+              <button className='volumeControl' aria-label='volume'>
+                <VolumeDownFill size={30} />
+              </button>
+            </div>
+
+            <div>
+              <input
+                type='range'
+                value={trackSoundProgress}
+                onChange={(e) => onSoundChange(e.target.value)}
+                className='soundProgress'
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>
