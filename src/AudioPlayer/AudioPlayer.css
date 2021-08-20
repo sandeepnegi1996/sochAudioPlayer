@@ -1,12 +1,11 @@
 .audio-player {
-  max-width: 420px;
-  max-height: 500px;
+  max-width: 50%;
   border-radius: 20px;
   padding: 24px;
   box-shadow: 0 28px 28px rgba(0, 0, 0, 0.2);
   margin: auto;
   color: #14191f;
-  margin-top: 100px;
+  margin-top: 120px;
   background-color: #d38312;
   background: #70e1f5; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -45,13 +44,29 @@
   margin-top: 0;
 }
 
+.progressBarParent {
+  display: flex;
+}
+
+.progressBarInput {
+  /* border: 2px solid blue; */
+  width: 90%;
+}
+
 input[type='range'] {
   height: 5px;
   -webkit-appearance: none;
-  width: 100%;
+  width: 90%;
   margin-bottom: 10px;
   border-radius: 8px;
   background: #3b7677;
   transition: background 0.2s ease;
   cursor: pointer;
+}
+
+.sound-control {
+  /* border: 2px solid black; */
+}
+.volumeControl {
+  margin-top: -5px;
 }
