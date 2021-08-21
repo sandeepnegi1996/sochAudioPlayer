@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { VolumeDownFill } from 'react-bootstrap-icons'
+import AddSongs from './AddSong/AddSongs'
 
 import AudioControls from './AudioControls/AudioControls'
 import './AudioPlayer.css'
@@ -218,6 +219,10 @@ const AudioPlayer = () => {
               />
             </div>
           </div>
+          {/* 
+          //add songs component here */}
+
+          <AddSongs />
         </div>
       </div>
     </>
