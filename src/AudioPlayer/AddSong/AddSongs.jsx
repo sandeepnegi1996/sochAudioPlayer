@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import './AddSongs.css'
+import Songs from './Songs/Songs'
 
 const AddSongs = () => {
   const [songUrl, setsongUrl] = useState('')
@@ -10,7 +11,7 @@ const AddSongs = () => {
     setsongUrl(value)
   }
   const addSongsToPlayList = () => {
-    songsList.push(songUrl)
+    setSongsList((prevArray) => [...prevArray, songUrl])
     console.log(songsList)
   }
 
@@ -26,6 +27,8 @@ const AddSongs = () => {
       <button className='addSongBtn' onClick={() => addSongsToPlayList()}>
         Add Song
       </button>
+
+      <Songs songsList={songsList} />
     </div>
   )
 }
